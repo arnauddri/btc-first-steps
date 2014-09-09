@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+    <title>Quick Start</title>
+
+    <!-- CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="addressApp">
+
+    <div class="container">
+
+      <div class="col-md-12" ng-controller="wifToPrivateCtrl">
+        <h2>WIF to Private Key</h2>
+
+        <div class="form-group">
+            <label>Wallet Imported format</label>
+            <input type="text" class="form-control" ng-model="wif">
+        </div>
+        <div class="form-group">
+            <label>Converting WIF as Base58 string to byte array</label>
+            <input type="text" class="form-control" value="{{ decodedWif | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>Dropping last 4 checksum bytes</label>
+            <input type="text" class="form-control" value="{{ pubWithoutChecksum | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>Dropping first byte. This is the private key</label>
+            <input type="text" class="form-control" value="{{ private | uppercase }}">
+        </div>
+      </div>
+
+      <div class="col-md-12" ng-controller="privateToWifCtrl">
+        <h2>Private Key to WIF</h2>
+        <div class="form-group">
+            <label>Crypto Currency Versions</label>
+            <select class="form-control" style="width: 30%" ng-model="version">
+              <option>Bitcoin Public Address     0x00</option>
+              <option>Bitcoin Private Address     0x80</option>
+              <option>Bitcoin Script Hash     0x05</option>
+              <option>Testnet Public Address     0x6E</option>
+              <option>Testnet Private addressAp     0xEF</option>
+              <option>Testnet Script Hash     0xC4</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Wallet Imported format</label>
+            <input type="text" class="form-control" ng-model="private">
+        </div>
+        <div class="form-group">
+            <label>Add 0x80 byte to the front</label>
+            <input type="text" class="form-control" value="{{ versionedWif | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>First SHA-256</label>
+            <input type="text" class="form-control" value="{{ firstSHA | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>Second SHA-256</label>
+            <input type="text" class="form-control" value="{{ secondSHA | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>Checksum</label>
+            <input type="text" class="form-control" value="{{ checkSum | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>Checksum + Private</label>
+            <input type="text" class="form-control" value="{{ checkSum | uppercase }}{{ versionedWif | uppercase }}">
+        </div>
+        <div class="form-group">
+            <label>Base58 encoding</label>
+            <input type="text" class="form-control" value="{{ bs58Wif | uppercase }}">
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+    <div class="container">
+      <div class="col-md-12" ng-controller="privateToPublicCtrl">
+        <h2>Private to Public Key</h2>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" ng-click="randomPrivateKey()">Generate Private Key</button>
+        </div>
+
+        <div class="form-group">
+            <label>Private Key (plain format - hex)</label>
+            <input type="text" class="form-control" ng-model="privateHex">
+        </div>
+        <div class="form-group">
+            <label>Uncompressed Public Key (hex)</label>
+            <input type="text" class="form-control" ng-model="publicKeyHex">
+        </div>
+        <div class="form-group">
+            <label>Compressed Public Key (hex)</label>
+            <input type="text" class="form-control" ng-model="pubKeyCompressed">
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/Crypto.js"></script>
+    <script src="./js/SHA256.js"></script>
+    <script src="./js/jsbn.js"></script>
+    <script src="./js/ec.js"></script>
+    <script src="./js/sec.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/main.js"></script>
+  
+</body></html>
