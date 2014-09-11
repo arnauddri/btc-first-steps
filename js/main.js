@@ -43,7 +43,7 @@ function privateToPublicCtrl ($scope) {
     $scope.publicKey = generatePublic(Crypto.util.hexToBytes($scope.privateHex));
     $scope.publicKeyHex = $scope.publicKey.pubHex;
     $scope.pubKeyCompressed = compressPublicHex($scope.publicKey);
-  }  
+  }
 
   function generatePublic(input) {
     var curve = getSECCurveByName('secp256k1');
@@ -66,14 +66,12 @@ function privateToPublicCtrl ($scope) {
 
   function compressPublicHex(pub) {
     var publicKeyBytesCompressed = integerToBytes(pub.x,32);
-    
     if (pub.y.isEven())
       publicKeyBytesCompressed.unshift(0x02)
     else
       publicKeyBytesCompressed.unshift(0x03)
 
     var publicKeyHexCompressed = Crypto.util.bytesToHex(publicKeyBytesCompressed)
-    
     return publicKeyHexCompressed;
   }
 
@@ -82,7 +80,7 @@ function privateToPublicCtrl ($scope) {
 
     if (len < bytes.length) {
       bytes = bytes.slice(bytes.length - len);
-    } else { 
+    } else {
       while (len > bytes.length) {
         bytes.unshift(0);
       }
