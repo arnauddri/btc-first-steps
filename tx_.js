@@ -10,13 +10,13 @@ var transactionAmount = 20000000;
 //var recipientAddressHex = 'mjyxkdjbWsg3e1m1yxLyaEr16T5Hnzn4b8';
 
 // Previous Transaction details
-var prevRawTx = new Buffer('0100000001c3d062be6c104a9c68460f7b7cfa77eef0f600d6213bdc41ac210741341629d5000000006a4730440220503f07e749c6b7ed1de6c37bdf5f6a50e7a4df583cedf91bff88e86178fe488e02206fd4a669956b678c979f36f6b8c835bbf488437c0e3d0cf2b74e0d26725e18880121033b8355a26f4633d20bd1e7a6ac03d04126cd873bdadddd7da6971d681e6abc05ffffffff02002d3101000000001976a9140f4abcfc846effe508bcabfd35e736f6685fba0a88ac56b43a02000000001976a9145c8a4241bcfb047f69f00b3518425da251e6214e88ac00000000', 'hex');
-var prevTxHash = new Buffer('334545d08a6228a0bff039fa72bda8eb91044286f6149238fbbe9c045fd016bd', 'hex');
+var prevRawTx = new Buffer('0100000001bd16d05f049cbefb389214f686420491eba8bd72fa39f0bfa028628ad0454533000000006a47304402200d368239f36a98db89041e19225136b6ec4877e7adea4793f9686e13e48aaf4802207f5ddc3f50b0abb6e2e300495be6b5c00b6a7941044897afb565d3d5d2d3876f01210254f9e21348ac34c85ae868d58da4b350fc37b874e3a1ebb8fe94dc4de8373c9cffffffff01002d3101000000001976a9144e51154ea379b28b10d01103a32db2e9c90e67f788ac00000000', 'hex');
+//var prevTxHash = new Buffer('334545d08a6228a0bff039fa72bda8eb91044286f6149238fbbe9c045fd016bd', 'hex');
 var prevTxHash = sha256x2(prevRawTx);
-var prevTxScriptPubKey = new Buffer('76a9140f4abcfc846effe508bcabfd35e736f6685fba0a88ac', 'hex');
+var prevTxScriptPubKey = new Buffer('76a9144e51154ea379b28b10d01103a32db2e9c90e67f788ac', 'hex');
 
 // Generating public Key
-var privateKey = new Buffer('803F0D07C2CD057ED67445218745C3491A6448679BE45BAE729EA1C5365125AF01', 'hex');
+var privateKey = new Buffer('4215B64127536DC0588ECFD9BBAE5066C298E73630B3B583BFEAB9F51880D84701', 'hex');
 var ec = new EC('secp256k1');
 var keypair = ec.keyPair(privateKey);
 var publicKey = new Buffer(keypair.getPublic(true, 'hex'), 'hex');
@@ -29,7 +29,7 @@ var OPCODES = {
   OP_CHECKSIG: new Buffer('ac', 'hex')
 };
 // Hash 160 used in the OPCODE
-var hash160 = new Buffer('30fc1ddd198e6f43edcbbf3d574179a0d15c620a', 'hex');
+var hash160 = new Buffer('8488eee34d08d2fef170566301f1befbdda8b6c0', 'hex');
 
 // #################################
 // ########## TRANSACTION ##########
@@ -98,7 +98,6 @@ var transaction = buffertools.concat(
   tx.lockTime,
   tx.hashCode
 );
-
 // Double Sha-256 of the transaction
 var doubleHashedTx = sha256x2(transaction);
 
@@ -113,7 +112,8 @@ signature = signature.concat(new Buffer('01', 'hex'));
 // < The actual DER-encoded signature plus the one-byte hash code type>
 // < One-byte script OPCODE containing the length of the public key>
 // < The actual public key>
-
+console.log(tx.outCount);
+console.log(doubleHashedTx);
 var scriptSig = buffertools.concat(
   new Buffer(signature.length.toString(16), 'hex'),
   signature,
@@ -138,16 +138,17 @@ var finalTransaction = buffertools.concat(
   tx.lockTime
 );
 
-console.log(tx.version);
-console.log(tx.inCount);
-console.log(tx.input.prevTxHash);
-console.log(scriptSigLgth);
-console.log(scriptSig);
-console.log(tx.input.sequence);
-console.log(tx.outCount);
-console.log(tx.output.value);
-console.log(tx.output.scriptPubKeyLgth);
-console.log(tx.output.scriptPubKey);
+//console.log(tx.version);
+//console.log(tx.inCount);
+//console.log(tx.input.prevTxHash);
+//console.log(scriptSigLgth);
+//console.log(scriptSig);
+//console.log(tx.input.sequence);
+//console.log(tx.outCount);
+//console.log(tx.output.value);
+//console.log(tx.output.scriptPubKeyLgth);
+//console.log(tx.output.scriptPubKey);
+//console.log(tx.lockTime);
 
 console.log('sendrawtransaction ' + finalTransaction.toString('hex'));
 
