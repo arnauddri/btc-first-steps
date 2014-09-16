@@ -1,0 +1,18 @@
+{
+  "name": "decoderawtransaction",
+  "version": "0.0.0",
+  "description": "Parse a btc transaction",
+  "main": "main.js",
+  "dependencies": {
+    "angular": "~1.2.23",
+    "hash.js": "~0.3.2",
+    "underscore": "~1.7.0",
+    "buffer": "~2.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "arnauddri",
+  "license": "MIT"
+}
