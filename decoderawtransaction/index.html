@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+
+    <title>Quick Start</title>
+
+    <!-- CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="btcApp">
+
+    <div class="container">
+
+      <div class="col-md-12" ng-controller="ParserCtrl">
+        <h2>Decode Raw Transaction</h2>
+
+        <div class="form-group">
+            <label>TxHex</label>
+            <textarea type="text" class="form-control" style="height: 200px;" ng-model="txHex"></textarea>
+          </div>
+        <div class="well">
+          <p>Version: {{ tx.version }}</p>
+          <p>LockTime: {{ tx.lockTime }}</p>
+          <p>Number of inputs: {{ tx.inputsCount }}</p>
+          <p>vin:</p>
+          <ul ng-repeat="input in tx.inputs">
+            <li ng-repeat="(key, data) in input" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ key }}: {{ data }}</li>
+          </ul>
+          <p>Number of Outputs: {{ tx.outputsCount }}</p>
+          <p>vout:</p>
+          <ul ng-repeat="output in tx.outputs">
+            <li ng-repeat="(key, data) in output" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ key }}: {{ data }}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/bundle.js"></script>
+
+
+</body></html>
