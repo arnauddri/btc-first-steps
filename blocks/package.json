@@ -1,0 +1,16 @@
+{
+  "name": "btc-blocks",
+  "version": "0.0.0",
+  "description": "Block parser",
+  "main": "block.js",
+  "dependencies": {
+    "bitcoin-buffer": "~0.3.0",
+    "chai": "~1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "author": "arnauddri",
+  "license": "MIT"
+}
